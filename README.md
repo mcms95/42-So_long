@@ -1,8 +1,8 @@
-# Oficial documentation
-https://harm-smits.github.io/42docs/libs/minilibx/colors.html
+# MiniLibX Documentation
+Official documentation: https://harm-smits.github.io/42docs/libs/minilibx/colors.html
 
 # Get started
-MiniLibX for Linux requires xorg, x11 and zlib, therefore you will need to install the following dependencies: xorg, libxext-dev and zlib1g-dev. Installing these dependencies on Ubuntu can be done as follows:
+MiniLibX for Linux requires xorg, x11, and zlib. Therefore, you will need to install the following dependencies: xorg, libxext-dev, and zlib1g-dev. Installing these dependencies on Ubuntu can be done as follows:
 ```
 sudo apt-get update && sudo apt-get install xorg libxext-dev zlib1g-dev libbsd-dev
 ```
@@ -17,15 +17,16 @@ The map must be composed of only 5 possible characters:
 
 # Functions
 
-## How to compile
+## Compiling
 
 ```
 gcc FILE libmlx.a -lXext -lX11 -lm -lz -lbsd
 ```
 
-
 ## Start map
-- To start the connection with the graphical server:
+
+- To start the connection with the graphical server and create a window:
+
 ```
 int main()
 {
@@ -41,12 +42,13 @@ int main()
 
 # Starting filling the map
 
-- The function mlx_pixel_put() allows to fill a pixel, it takes has parameters:
-1 - The connection cretaed in mlx_init()
-2 - The window cretaed on mlx_new_window()
-3 - A x coordinate
-4 - A y coordinate
-5 - Color, look the RGB chart to try diferent ones -  https://www.rapidtables.com/web/color/RGB_Color.html
+- The function mlx_pixel_put() allows you to fill a pixel. It takes the following parameters:
+
+1. The connection created in mlx_init()
+2. The window created in mlx_new_window()
+3. An x-coordinate
+4. A y-coordinate
+5. Color (look at the RGB chart to try different colors - https://www.rapidtables.com/web/color/RGB_Color.html)
 
 ```
 mlx_pixel_put(void *mlx_ptr, void *win_ptr, int x, int y, int color)
@@ -75,7 +77,8 @@ int x = 225;
     }
 ```
 
-Dynamic assignment:
+## Dynamic assignment:
+
 ```
 int x = WIDTH * 0.4;
     int y;
@@ -99,10 +102,9 @@ int x = WIDTH * 0.4;
 
 ## All functions
 
-1 - mlx_init(); // Starts the connectoon with the graphical 
-2 - mlx_new_window(void *mlx_ptr, int size_x, int size_y, char *title) // Creates the window (connection, width, height, window_name) 
-3 - int mlx_pixel_put(void *mlx_ptr, void *win_ptr, int x, int y, int color) // fill pixel
-4 - mlx_string_put(void *mlx_ptr, void *win_ptr, int x, int y, int color, char *string); // Insert string
-
-5 - mlx_loop(void *mlx_ptr) // Creates a loop so the program doesn't exit immediatly
+1. mlx_init(); // Starts the connectoon with the graphical 
+2. mlx_new_window(void *mlx_ptr, int size_x, int size_y, char *title) // Creates the window (connection, width, height, window_name) 
+3. int mlx_pixel_put(void *mlx_ptr, void *win_ptr, int x, int y, int color) // fill pixel
+4. mlx_string_put(void *mlx_ptr, void *win_ptr, int x, int y, int color, char *string); // Insert string
+5. mlx_loop(void *mlx_ptr) // Creates a loop so the program doesn't exit immediatly
 
