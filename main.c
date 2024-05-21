@@ -9,8 +9,10 @@ int main()
     void *mlx_connection;
     void *mlx_window;
 
-    mlx_connection = mlx_init();                                                // Start the connection
-    mlx_window = mlx_new_window(mlx_connection, WIDTH, HEIGHT, "First window");      // Open the window
+    mlx_connection = mlx_init(); // Start the connection, this return a structure t_xvar type
+    // WE are also malloc this big stucture where display is
+
+    mlx_window = mlx_new_window(mlx_connection, WIDTH, HEIGHT, "First window");      // Open the window, it returns a struct with memory allocated
     
     int x = WIDTH * 0.1;
     int y;
@@ -36,6 +38,11 @@ int main()
                 480, 
                 rand()% 0x1000000,
                 "My Painting");
+
+
     mlx_loop(mlx_connection);                                                   // Loop to keep window alive
+
+    return 0;
+
 }
 
