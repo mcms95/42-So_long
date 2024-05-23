@@ -1,4 +1,4 @@
-#include "minilibx/mlx.h"
+#include "../minilibx/mlx.h"
 #include <stdlib.h>
 
 typedef struct	s_data {
@@ -17,25 +17,21 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-void *paint_window(t_data *data, int color)
+void draw_square(t_data *data, int x, int y, int size, int color)
 {
-	int x, y;
-	int height = 500;
-	int width = 500;
+	int i, j;
+	i = y;
 
-	y = 0;
-	while (y < height)
+	while (i < y + size)
 	{
-		x = 0;
-		while( x < width)
+		j = x;
+		while( j < x + size)
 		{
-			my_mlx_pixel_put(data, x, y, color);
-			x++;
+			my_mlx_pixel_put(data, j, i, color);
+			j++;
 		}
-		y++;
+		i++;
 	}
-
-
 }
 
 int	main(void)
@@ -45,11 +41,15 @@ int	main(void)
 	t_data	img;
 
 	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	img.img = mlx_new_image(mlx, 1920, 1080);
+	mlx_win = mlx_new_window(mlx, 800, 800, "Hello world!");
+	img.img = mlx_new_image(mlx, 800, 800);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 								&img.endian);
-	paint_window(&img, 0x00FF0000);
+	// Draw square
+	draw_square(&img,100, 100, 100,  0x00FF0000);
+
+
+
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
 }

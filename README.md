@@ -108,3 +108,27 @@ int x = WIDTH * 0.4;
 4. mlx_string_put(void *mlx_ptr, void *win_ptr, int x, int y, int color, char *string); // Insert string
 5. mlx_loop(void *mlx_ptr) // Creates a loop so the program doesn't exit immediatly
 
+## Colors
+
+Colors are presented in an int format
+In minilibx, colors are represented as integers using the TRGB format. TRGB stands for Transparency (T), Red (R), Green (G), and Blue (B). Each component is represented by 8 bits, allowing a range of values from 0 to 255.
+To define a color in TRGB format, you can use the following notation: 0xTTRRGGBB. Here's what each letter represents:
+
+- T: Transparency (0 = fully opaque, 255 = fully transparent)
+- R: Red component (0 = no red, 255 = full red)
+- G: Green component (0 = no green, 255 = full green)
+- B: Blue component (0 = no blue, 255 = full blue)
+
+For example, to represent the color red, you would use 0x00FF0000. Similarly, green would be 0x0000FF00, and blue would be 0x000000FF.
+Encoding and Decoding Colors
+To work with colors effectively, you need to understand how to encode and decode them. There are two common methods for this: bitshifting and char/int conversion.
+
+Bitshifting:
+Bitshifting is a technique used to manipulate the individual components of a color. Since each component occupies 8 bits (1 byte) and an integer is 4 bytes, we can use bitshifting to set and extract the values.
+Here's an example function that creates a TRGB color using bitshifting:º
+```
+int create_trgb(int t, int r, int g, int b)
+{
+    return (t << 24 | r << 16 | g << 8 | b);
+}
+```
