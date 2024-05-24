@@ -114,6 +114,8 @@ Colors are presented in an int format
 In minilibx, colors are represented as integers using the TRGB format. TRGB stands for Transparency (T), Red (R), Green (G), and Blue (B). Each component is represented by 8 bits, allowing a range of values from 0 to 255.
 To define a color in TRGB format, you can use the following notation: 0xTTRRGGBB. Here's what each letter represents:
 
+**INT is 4 bytes so each one of this ocupies one byte:**
+
 - T: Transparency (0 = fully opaque, 255 = fully transparent)
 - R: Red component (0 = no red, 255 = full red)
 - G: Green component (0 = no green, 255 = full green)
@@ -132,3 +134,49 @@ int create_trgb(int t, int r, int g, int b)
     return (t << 24 | r << 16 | g << 8 | b);
 }
 ```
+
+
+## Events
+
+mlx_hook allows us to register ecents with the call od a simple hook registration fucntion 
+
+```
+// Prototype
+void mlx_hook(mlx_win_list_t *win_ptr, int x_event, int x_mask, int (*f)(), void *param)
+
+// Real one
+mlx_hook(vars.win, 2, 1L<<0, close_window, &vars);
+```
+
+Minilibx api has some alias hooking function:
+
+- mlx_expose_hook function is an alias of mlx_hook on expose event (12).
+- mlx_key_hook function is an alias of mlx_hook on key up event (3).
+- mlx_mouse_hook function is an alias of mlx_hook on mouse down event (4).
+
+Full example of a function that closes the window when ESC is pressdown
+
+```
+typedef struct s_vars {
+    void *mlx;
+    void *win;
+} t_vars;
+
+int close_window(int keycode, t_vars *vars) {
+    if (keycode == 65307) {  // 65307 is the keycode for ESC
+        mlx_destroy_window(vars->mlx, vars->win);
+    }
+    return 0;
+}
+
+int main(void) {
+    t_vars vars;
+
+    vars.mlx = mlx_init();
+    vars.win = mlx_new_window(vars.mlx, 1920, 1080, "Hello world!");
+    mlx_hook(vars.win, 2, 1L<<0, close_window, &vars);
+    mlx_loop(vars.mlx);
+    return 0;
+}
+```
+
