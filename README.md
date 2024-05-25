@@ -19,7 +19,7 @@ The map must be composed of only 5 possible characters:
 
 ## Compiling
 
-```
+```bash
 gcc FILE libmlx.a -lXext -lX11 -lm -lz -lbsd
 ```
 
@@ -27,7 +27,7 @@ gcc FILE libmlx.a -lXext -lX11 -lm -lz -lbsd
 
 - To start the connection with the graphical server and create a window:
 
-```
+```c
 int main()
 {
     void *mlx_connection;
@@ -50,13 +50,13 @@ int main()
 4. A y-coordinate
 5. Color (look at the RGB chart to try different colors - https://www.rapidtables.com/web/color/RGB_Color.html)
 
-```
+```c
 mlx_pixel_put(void *mlx_ptr, void *win_ptr, int x, int y, int color)
 ```
 
 ## Design a 50x50 square in the center
 
-```
+```c
 int x = 225;
     int y;
     while (x < 275)
@@ -79,7 +79,7 @@ int x = 225;
 
 ## Dynamic assignment:
 
-```
+```c
 int x = WIDTH * 0.4;
     int y;
     while (x  < WIDTH * 0.6)
@@ -127,8 +127,9 @@ To work with colors effectively, you need to understand how to encode and decode
 
 Bitshifting:
 Bitshifting is a technique used to manipulate the individual components of a color. Since each component occupies 8 bits (1 byte) and an integer is 4 bytes, we can use bitshifting to set and extract the values.
-Here's an example function that creates a TRGB color using bitshifting:º
-```
+Here's an example function that creates a TRGB color using bitshifting:
+
+```c
 int create_trgb(int t, int r, int g, int b)
 {
     return (t << 24 | r << 16 | g << 8 | b);
@@ -140,7 +141,7 @@ int create_trgb(int t, int r, int g, int b)
 
 mlx_hook allows us to register ecents with the call od a simple hook registration fucntion 
 
-```
+```c
 // Prototype
 void mlx_hook(mlx_win_list_t *win_ptr, int x_event, int x_mask, int (*f)(), void *param)
 
@@ -156,7 +157,7 @@ Minilibx api has some alias hooking function:
 
 Full example of a function that closes the window when ESC is pressdown
 
-```
+```c
 typedef struct s_vars {
     void *mlx;
     void *win;
@@ -180,3 +181,25 @@ int main(void) {
 }
 ```
 
+## Loop
+
+To render images we use 2 functions mlx_loop and mlx_loop_hook.
+
+```c
+    int render_next_frame(void *YourStruct);
+
+    int main(void)
+    {
+        void    *mlx;
+
+        mlx = mlx_init();
+        mlx_loop_hook(mlx, render_next_frame, YourStruct);
+        mlx_loop(mlx);
+    }
+```
+
+## Images
+
+To read from a file:
+- XMP use **mlx_xpm_file_to_image**
+- PNG use **mlx_png_file_to_image**, but this functions leaks memory, so its better use XMP files.
