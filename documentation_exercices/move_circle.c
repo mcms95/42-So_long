@@ -4,9 +4,21 @@
 typedef struct s_vars {
     void *mlx;
     void *win;
+    void *img;
+    char *addr;
+    int bits_per_pixel;
+    int line_length;
+    int endian;
     int x;
     int y;
 } t_vars;
+
+void my_mlx_pixel_put(t_vars *vars, int x, int y, int color)
+{
+    char *dst;
+    dst = vars->addr + (y * vars->line_length + x * (vars->bits_per_pixel / 8));
+    *(unsigned int*)dst = color;
+}
 
 int render_next_frame(t_vars *vars)
 {
@@ -22,8 +34,8 @@ int render_next_frame(t_vars *vars)
     radius = 50;
     color = 0xFFFFFF;  // White color
 
-    // Clear the window
-    mlx_clear_window(vars->mlx, vars->win);
+    vars->img = mlx_new_image(vars->mlx, width, height);
+    vars->addr = mlx_get_data_addr(vars->img, &vars->bits_per_pixel, &vars->line_length, &vars->endian);
 
     // Draw the circle
     y = -radius;
@@ -33,11 +45,15 @@ int render_next_frame(t_vars *vars)
         while (x <= radius)
         {
             if (x * x + y * y <= radius * radius)
-                mlx_pixel_put(vars->mlx, vars->win, vars->x + x, vars->y + y, color);
+                my_mlx_pixel_put(vars, vars->x + x, vars->y + y, color);
             x++;
         }
         y++;
     }
+
+    mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
+    mlx_destroy_image(vars->mlx, vars->img);
+
     return (0);
 }
 
