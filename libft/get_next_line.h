@@ -10,7 +10,7 @@
 # include <stdlib.h>
 
 char	*get_next_line(int fd);
-char	*ft_strjoin(char *line, char *buf);
+char	*ft_string_join(char *line, char *buf);
 int		buffer(char *buf);
 void	clearbuffer(char *buf);
 

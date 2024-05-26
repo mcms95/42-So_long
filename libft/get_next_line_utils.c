@@ -14,7 +14,7 @@ static size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-char	*ft_strjoin(char *line, char *buffer)
+char	*ft_string_join(char *line, char *buffer)
 {
 	char	*str;
 	size_t	j;

@@ -51,7 +51,7 @@ char	*get_next_line(int fd)
 	trig = 0;
 	while (trig == 0 && (buf[0] != 0 || read(fd, buf, BUFFER_SIZE) != 0))
 	{
-		line = ft_strjoin(line, buf);
+		line = ft_string_join(line, buf);
 		trig = buffer(buf);
 	}
 	return (line);
