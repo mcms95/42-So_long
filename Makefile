@@ -1,6 +1,6 @@
 NAME = so_long
 
-SRCS = so_long.c	check.c	count.c read_map.c	initialization.c
+SRCS = so_long.c	check.c	count.c read_map.c	initialization.c	cleanup_and_exit.c
 
 OBJS = $(SRCS:.c=.o)
 

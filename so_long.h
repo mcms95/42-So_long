@@ -19,10 +19,11 @@ typedef struct t_game
 	int		exit_count;
 	int		move_x;
 	int		move_y;
-	
-
+	void	*mlx_connection;
+	void	*mlx_window;
 } t_game;
 
+//------------------------CHECKS------------------------//
 // check.c
 void	check_characters_count(t_game *game);
 void	check_all_rows_have_same_length(t_game *game);
@@ -30,16 +31,22 @@ void	check_all_characters_are_valid(t_game *game);
 void	check_all_walls_are_1(t_game *game);
 int		check_file_termination(char *map);
 
-
 // initialization.c
 void	initialization(t_game *game);
 
-// map_parsing.c
+// read_map.c
 void	read_map(char *map, t_game *game);
 
 // count.c
 void	count_rows_and_columns(t_game *game);
 
+//------------------------GAME------------------------//
+// cleanup_and_exit.c
+int cleanup_and_exit(void *game_ptr);
+int close_window_with_esc(int keycode, t_game *game);
+
+
+//------------------------MAIN------------------------//
 //so_long.c
 void check_map_and_characters(t_game *game);
 
