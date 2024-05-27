@@ -10,4 +10,5 @@ void	initialization(t_game *game)
 	game->exit_count = 0;
 	game->move_x = 0;
 	game->move_y = 0;
+	game->moves_count = 0;
 }

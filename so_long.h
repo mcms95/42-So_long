@@ -19,6 +19,7 @@ typedef struct t_game
 	int		exit_count;
 	int		move_x;
 	int		move_y;
+	int		moves_count;
 	void	*mlx_connection;
 	void	*mlx_window;
 } t_game;

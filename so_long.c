@@ -16,12 +16,34 @@ void check_map_and_characters(t_game *game)
 	check_all_walls_are_1(game);
 }
 
+int key_hook(int keycode, t_game *game)
+{
+	if (keycode == 65307) // ESC key
+	{
+		cleanup_and_exit(game);
+	}
+	else if(keycode == 119) // W key
+		ft_putstr_fd("Move: W", 1);
+	else if(keycode == 115) // S key
+		ft_putstr_fd("Move: S", 1);
+	else if(keycode == 97) // A key	
+		ft_putstr_fd("Move: A", 1);
+	else if(keycode == 100) // D key
+		ft_putstr_fd("Move: D", 1);
+	game->moves_count++;
+	ft_putchar_fd('\n', 1);
+	ft_putstr_fd(ft_itoa(game->moves_count), 1);
+	ft_putchar_fd('\n', 1);
+	return 0;
+}
+
+
 void	start_game(t_game *game)
 {
 	
 	game->mlx_connection = mlx_init(); 
 	game->mlx_window = mlx_new_window(game->mlx_connection, game->column_count * 64, game->row_count * 64, "so_long"); 
-	mlx_hook(game->mlx_window, 2, 1L<<0, close_window_with_esc, game);
+	mlx_key_hook(game->mlx_window, key_hook, game);
 	mlx_hook(game->mlx_window, 17, 1L<<17, cleanup_and_exit, game);
 	mlx_loop(game->mlx_connection);
 }
