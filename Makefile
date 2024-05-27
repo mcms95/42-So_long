@@ -1,6 +1,6 @@
 NAME = so_long
 
-SRCS = map_parsing.c	check.c	count.c
+SRCS = so_long.c	check.c	count.c read_map.c	initialization.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -12,7 +12,7 @@ RM = rm -f
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
 
 MLX_FLAGS = -Lminilibx -lmlx -L/usr/lib -Iminilibx -lXext -lX11 -lm -lz -lbsd
 
@@ -28,7 +28,7 @@ $(MINILIBX):
 	$(MAKE) -C minilibx
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) $(LIBFT) $(MINILIBX) $(MLX_FLAGS) -fsanitize=address -o $(NAME)
+	$(CC) $(OBJS) $(LIBFT) $(MINILIBX) $(MLX_FLAGS) -o $(NAME)
 
 clean:
 	$(MAKE) -C libft clean

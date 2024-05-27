@@ -12,9 +12,4 @@ void	count_rows_and_columns(t_game *game)
 		i++;
 	game->row_count = i;
 	game->column_count = (int)ft_strlen(game->map[0]);
-	ft_putnbr_fd(game->row_count, 1);
-	ft_putchar_fd('\n', 1);
-	ft_putnbr_fd(game->column_count, 1);
-	ft_putchar_fd('\n', 1);
-
 }

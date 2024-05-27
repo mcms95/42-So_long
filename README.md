@@ -203,3 +203,9 @@ To render images we use 2 functions mlx_loop and mlx_loop_hook.
 To read from a file:
 - XMP use **mlx_xpm_file_to_image**
 - PNG use **mlx_png_file_to_image**, but this functions leaks memory, so its better use XMP files.
+
+## Test
+
+```bash
+valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./so_long "maps/map1.ber"
+```

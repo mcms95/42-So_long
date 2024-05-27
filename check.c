@@ -2,10 +2,7 @@
 #include "minilibx/mlx.h"
 #include "libft/libft.h"
 #include "libft/get_next_line.h"
-#include <stdio.h>
-#include <fcntl.h>
-#include <stdlib.h>
-#include <unistd.h>
+
 
 // Check if characters count is correct
 void	check_characters_count(t_game *game)
@@ -30,20 +27,12 @@ void	check_characters_count(t_game *game)
 		i++;
 	}
 	if (game->player_count != 1 )
-	{
 		ft_putstr_fd("There should be only one player\n", 1);
-	}
 	if (game->exit_count != 1)
-	{
 		ft_putstr_fd("There should be only one exit\n", 1);
-	}
 	if (game->collectibles_count == 0)
-	{
 		ft_putstr_fd("There should be at least one collectible\n", 1);
-	}
-	printf("This game have %d exits\n", game->exit_count);
-	printf("This game have %d players\n", game->player_count);
-	printf("This game have %d collectibles\n", game->collectibles_count);
+
 }
 
 // Check is rows have same length
@@ -121,4 +110,22 @@ void check_all_walls_are_1(t_game *game)
         }
         i++;
     }
+}
+
+
+
+// check if last 4 leters of the file are .ber
+int	check_file_termination(char *map)
+{
+	int i;
+	
+	i = 0;
+	while (map[i])
+		i++;
+	if (map[i - 1] != 'r' || map[i - 2] != 'e' || map[i - 3] != 'b' || map[i - 4] != '.')
+	{
+		ft_putstr_fd("File should have .ber termination\n", 1);
+		return (1);
+	}
+	return (0);
 }
