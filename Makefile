@@ -1,6 +1,7 @@
 NAME = so_long
 
-SRCS = so_long.c	check.c	count.c read_map.c	initialization.c	cleanup_and_exit.c
+SRCS = so_long.c	check.c	count.c read_map.c	initialization.c	cleanup_and_exit.c \
+		render_window.c 
 
 OBJS = $(SRCS:.c=.o)
 

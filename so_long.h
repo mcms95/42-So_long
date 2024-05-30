@@ -7,7 +7,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-
 typedef struct t_game
 {
 	int		fd;
@@ -22,6 +21,13 @@ typedef struct t_game
 	int		moves_count;
 	void	*mlx_connection;
 	void	*mlx_window;
+	void	*img_player;
+	void	*img_collectible;
+	void	*img_wall;
+	void	*img_exit;
+	int		img_height;
+	int		img_width;
+
 } t_game;
 
 //------------------------CHECKS------------------------//
@@ -46,10 +52,16 @@ void	count_rows_and_columns(t_game *game);
 int cleanup_and_exit(void *game_ptr);
 int close_window_with_esc(int keycode, t_game *game);
 
+// render_window.c
+void	start_game(t_game *game);
+void	render_game(t_game *game);
+void	load_characters_image(t_game *game);
 
 //------------------------MAIN------------------------//
 //so_long.c
 void check_map_and_characters(t_game *game);
+int key_hook(int keycode, t_game *game);
+
 
 
 #endif

@@ -7,7 +7,6 @@ int cleanup_and_exit(void *game_ptr)
 {
 	t_game *game = (t_game *)game_ptr;
 	mlx_destroy_window(game->mlx_connection, game->mlx_window);
-	free(game->mlx_connection);
 
 	// Free game->map array
 	int i = -1;
@@ -15,6 +14,10 @@ int cleanup_and_exit(void *game_ptr)
 	{
 		free(game->map[i]);
 	}
+	free(game->img_collectible);
+	free(game->img_exit);
+	free(game->img_player);
+	free(game->img_wall);
 	free(game->map);
 	free(game);
 

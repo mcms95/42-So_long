@@ -1,4 +1,7 @@
 #include "so_long.h"
+#include "minilibx/mlx.h"
+#include "libft/libft.h"
+#include "libft/get_next_line.h"
 
 void	initialization(t_game *game)
 {
@@ -11,4 +14,7 @@ void	initialization(t_game *game)
 	game->move_x = 0;
 	game->move_y = 0;
 	game->moves_count = 0;
+	game->mlx_connection = NULL;
+	game->mlx_window = NULL;
+
 }
