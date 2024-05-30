@@ -1,7 +1,7 @@
 NAME = so_long
 
-SRCS = so_long.c	check.c	count.c read_map.c	initialization.c	cleanup_and_exit.c \
-		render_window.c 
+SRCS = so_long.c	check.c read_map.c	initialization.c	cleanup_and_exit.c \
+		render_window.c	player_movement.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -13,7 +13,7 @@ RM = rm -f
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror 
 
 MLX_FLAGS = -Lminilibx -lmlx -L/usr/lib -Iminilibx -lXext -lX11 -lm -lz -lbsd
 
