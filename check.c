@@ -8,28 +8,26 @@ void	check_characters_count(t_game *game)
 	int	i;
 	int	j;
 
-	i = 0;
-	while (game->map[i])
+	i = -1;
+	while (game->map[++i])
 	{
-		j = 0;
-		while (game->map[i][j])
+		j = -1;
+		while (game->map[i][++j])
 		{
 			if (game->map[i][j] == 'C')
+			{
 				game->collectibles_count++;
+				game->collectibles_count_for_flood_fill++;
+			}
 			if (game->map[i][j] == 'E')
-				game->exit_count++;
+				increment_exit(game, i, j);
 			if (game->map[i][j] == 'P')
 				game->player_count++;
-			j++;
 		}
-		i++;
 	}
-	if (game->player_count != 1)
-		print_error("There should be only one player\n");
-	if (game->exit_count != 1)
-		print_error("There should be only one exit\n");
-	if (game->collectibles_count == 0)
-		print_error("There should be at least one collectible\n");
+	if (game->player_count != 1 || game->exit_count != 1
+	|| game->collectibles_count == 0)
+		print_error("Characters count is invalid\n");
 }
 
 void	check_all_rows_have_same_length(t_game *game)

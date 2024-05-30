@@ -28,3 +28,10 @@ void	count_rows_and_columns(t_game *game)
 	game->row_count = i;
 	game->column_count = (int)ft_strlen(game->map[0]);
 }
+
+void	increment_exit(t_game *game, int i, int j)
+{
+	game->exit_count++;
+	game->exit_x = j;
+	game->exit_y = i;
+}

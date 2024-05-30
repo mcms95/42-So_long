@@ -20,6 +20,8 @@ typedef struct t_game
 	int		exit_count;
 	int		player_x;
 	int		player_y;
+	int		exit_x;
+	int		exit_y;
 	int		moves_count;
 	void	*mlx_connection;
 	void	*mlx_window;
@@ -47,9 +49,15 @@ int		check_file_termination(char *map);
 // initialization.c
 void	initialization(t_game *game);
 void	count_rows_and_columns(t_game *game);
+void	increment_exit(t_game *game, int i, int j);
+int check_game_is_playable(t_game *game);
 
 // read_map.c
 void	read_map(char *map, t_game *game);
+void	map_copy(t_game *game);
+void	get_player_position(t_game *game);
+void	flood_game_with_p(t_game *game, int i, int j);
+
 
 //------------------------GAME------------------------//
 // cleanup_and_exit.c

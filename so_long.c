@@ -30,14 +30,11 @@ int	main(int ac, char **av)
 		initialization(game);
 		read_map(av[1], game);
 		check_map_and_characters(game);
-		int i = 0;
-		while (game->map_copy[i])
+		/*if(check_game_is_playable(game) == 0)
 		{
-			ft_putstr_fd(game->map_copy[i], 1);
-			ft_putstr_fd("\n", 1);
-			i++;
-		}
-		
+			print_error("The game is not playable");
+			cleanup_and_exit(game);
+		}*/
 		start_game(game);
 	}
 	else
@@ -46,3 +43,89 @@ int	main(int ac, char **av)
 	}
 	return (0);
 }
+
+
+/*void	map_copy(t_game *game)
+{
+	int	i;
+	int	j;
+
+	game->map_copy = malloc((game->row_count + 1) * sizeof(char *));
+	if (!game->map_copy )
+		return ;
+	i = 0;
+	while (game->map[i])
+	{
+		j = 0;
+		game->map_copy[i] = malloc((game->column_count + 1) * sizeof(char *));
+		while (game->map[i][j])
+		{
+			game->map_copy[i][j] = game->map[i][j];
+			j++;
+		}
+		game->map_copy[i][j] = '\0';
+		i++;
+	}
+	game->map_copy[i] = '\0';
+}
+
+void	get_player_position(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (game->map_copy[i])
+	{
+		j = 0;
+		while (game->map_copy[i][j])
+		{
+			if (game->map_copy[i][j] == 'P')
+			{
+				game->player_x = j;
+				game->player_y = i;
+				return ;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+void	flood_game_with_p(t_game *game, int i, int j)
+{
+	if (i < 0 || j < 0 || i >= game->row_count || j >= game->column_count)
+		return ;
+	if (game->map_copy[i][j] == '1' || game->map_copy[i][j] == 'E')
+		return ;
+	if (game->map_copy[i][j] == 'C')
+	{
+		game->collectibles_count_for_flood_fill--;
+		game->map_copy[i][j] = 'P';
+	}
+	else
+		game->map_copy[i][j] = 'P';
+	flood_game_with_p(game, i + 1, j);
+	flood_game_with_p(game, i - 1, j);
+	flood_game_with_p(game, i, j + 1);
+	flood_game_with_p(game, i, j - 1);
+}
+
+int check_game_is_playable(t_game *game)
+{
+	get_player_position(game);
+	map_copy(game);
+	flood_game_with_p(game, game->player_y, game->player_x);
+	if(game->collectibles_count_for_flood_fill != 0)
+		print_error("Collectibles are not reachable\n");
+	if(game->map_copy[game->exit_y][game->exit_x + 1] == 'P' 
+		|| game->map_copy[game->exit_y][game->exit_x - 1] == 'P'
+		|| game->map_copy[game->exit_y + 1][game->exit_x] == 'P'
+		|| game->map_copy[game->exit_y - 1][game->exit_x] == 'P')
+	{
+		return (1);
+	}
+	else
+		print_error("Exit is not reachable\n");
+	return (0);
+}*/
