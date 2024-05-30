@@ -16,6 +16,7 @@ typedef struct t_game
 	int		column_count;
 	int		player_count;
 	int		collectibles_count;
+	int		collectibles_count_for_flood_fill;
 	int		exit_count;
 	int		player_x;
 	int		player_y;

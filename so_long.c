@@ -6,7 +6,7 @@
 void	check_map_and_characters(t_game *game)
 {
 	count_rows_and_columns(game);
-	if (game->row_count >= game->column_count)
+	if (game->row_count < 3 && game->row_count >= game->column_count)
 	{
 		print_error("Map is not a rectangle");
 	}
@@ -30,6 +30,14 @@ int	main(int ac, char **av)
 		initialization(game);
 		read_map(av[1], game);
 		check_map_and_characters(game);
+		int i = 0;
+		while (game->map_copy[i])
+		{
+			ft_putstr_fd(game->map_copy[i], 1);
+			ft_putstr_fd("\n", 1);
+			i++;
+		}
+		
 		start_game(game);
 	}
 	else
