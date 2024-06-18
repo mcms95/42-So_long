@@ -1,7 +1,7 @@
 NAME = so_long
 
 SRCS = so_long.c	check.c read_map.c	initialization.c	cleanup_and_exit.c \
-		render_window.c	player_movement.c
+		render_window.c	player_movement.c	flood_fill.c
 
 OBJS = $(SRCS:.c=.o)
 

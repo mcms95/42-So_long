@@ -10,9 +10,11 @@ void	initialization(t_game *game)
 	game->column_count = 0;
 	game->player_count = 0;
 	game->collectibles_count = 0;
+	game->collectibles_count_for_flood_fill = 0;
 	game->exit_count = 0;
 	game->player_x = 0;
 	game->player_y = 0;
+	game->exit_flood_fill_count = 0;
 	game->moves_count = 0;
 	game->mlx_connection = NULL;
 	game->mlx_window = NULL;
@@ -29,9 +31,8 @@ void	count_rows_and_columns(t_game *game)
 	game->column_count = (int)ft_strlen(game->map[0]);
 }
 
-void	increment_exit(t_game *game, int i, int j)
+void	increment_exit(t_game *game)
 {
 	game->exit_count++;
-	game->exit_x = j;
-	game->exit_y = i;
+	game->exit_flood_fill_count++;
 }

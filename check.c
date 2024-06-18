@@ -20,7 +20,7 @@ void	check_characters_count(t_game *game)
 				game->collectibles_count_for_flood_fill++;
 			}
 			if (game->map[i][j] == 'E')
-				increment_exit(game, i, j);
+				increment_exit(game);
 			if (game->map[i][j] == 'P')
 				game->player_count++;
 		}
