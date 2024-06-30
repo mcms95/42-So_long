@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nucardos <nucardos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/19 11:10:34 by nucardos          #+#    #+#             */
+/*   Updated: 2024/06/19 11:11:56 by nucardos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 #include "minilibx/mlx.h"
 #include "libft/libft.h"
@@ -26,8 +38,8 @@ void	check_characters_count(t_game *game)
 		}
 	}
 	if (game->player_count != 1 || game->exit_count != 1
-	|| game->collectibles_count == 0)
-		print_error("Characters count is invalid\n");
+		|| game->collectibles_count == 0)
+		print_error("Characters count is invalid\n", game);
 }
 
 void	check_all_rows_have_same_length(t_game *game)
@@ -41,7 +53,7 @@ void	check_all_rows_have_same_length(t_game *game)
 	{
 		if (ft_strlen(game->map[row + 1]) != row_length)
 		{
-			print_error("Rows sizes are different\n");
+			print_error("Rows sizes are different\n", game);
 		}
 		row++;
 	}
@@ -62,7 +74,7 @@ void	check_all_characters_are_valid(t_game *game)
 			game->map[i][j] == 'P' || game->map[i][j] == '1' ||
 			game->map[i][j] == '0'))
 			{
-				print_error("There are invalid characters in map\n");
+				print_error("There are invalid characters in map\n", game);
 			}
 			j++;
 		}
@@ -84,7 +96,7 @@ void	check_all_walls_are_1(t_game *game)
 			while (j < game->column_count)
 			{
 				if (game->map[i][j] != '1')
-					print_error("First or last row are not just 1's\n");
+					print_error("First or last row are not just 1's\n", game);
 				j++;
 			}
 		}
@@ -92,7 +104,7 @@ void	check_all_walls_are_1(t_game *game)
 		{
 			if ((game->map[i][0] != '1') ||
 				(game->map[i][game->column_count - 1] != '1'))
-				print_error("Rows are not just 1's\n");
+				print_error("Rows are not just 1's\n", game);
 		}
 		i++;
 	}
@@ -108,7 +120,8 @@ int	check_file_termination(char *map)
 	if (map[i - 1] != 'r' || map[i - 2] != 'e'
 		|| map[i - 3] != 'b' || map[i - 4] != '.')
 	{
-		print_error("File should have .ber termination\n");
+		ft_putstr_fd("File should have .ber termination\n", 1);
+		exit (1);
 	}
 	return (0);
 }

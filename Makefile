@@ -13,9 +13,9 @@ RM = rm -f
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror
 
-MLX_FLAGS = -Lminilibx -lmlx -L/usr/lib -Iminilibx -lXext -lX11 -lm -lz -lbsd
+MLX_FLAGS = -Lminilibx -lmlx -L/usr/lib -Iminilibx -lXext -lX11 -lm -lz 
 
 all: $(LIBFT) $(MINILIBX) $(NAME)
 

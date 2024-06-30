@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nucardos <nucardos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/19 11:23:37 by nucardos          #+#    #+#             */
+/*   Updated: 2024/06/19 15:29:21 by nucardos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
 # define SO_LONG_H
 # include "minilibx/mlx.h"
@@ -66,7 +78,8 @@ void	map_copy(t_game *game);
 // cleanup_and_exit.c
 int		cleanup_and_exit(void *game_ptr);
 int		close_window_with_esc(int keycode, t_game *game);
-void	print_error(char *error);
+void	print_error(char *error, t_game *game);
+void	clean_up_map(t_game	*game);
 
 // render_window.c
 void	start_game(t_game *game);

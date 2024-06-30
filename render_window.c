@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render_window.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nucardos <nucardos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/19 11:10:58 by nucardos          #+#    #+#             */
+/*   Updated: 2024/06/19 15:37:24 by nucardos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 #include "minilibx/mlx.h"
 #include "libft/libft.h"
@@ -8,18 +20,28 @@ void	load_characters_image(t_game *game)
 	game->img_player = mlx_xpm_file_to_image(
 			game->mlx_connection, "images/player.xpm",
 			&game->img_width, &game->img_height);
+	if (game->img_player == NULL)
+		print_error("Invalid player image", game);
 	game->img_collectible = mlx_xpm_file_to_image(
 			game->mlx_connection, "images/collectible.xpm",
 			&game->img_width, &game->img_height);
+	if (game->img_collectible == NULL)
+		print_error("Invalid collectible image", game);
 	game->img_wall = mlx_xpm_file_to_image(
 			game->mlx_connection, "images/wall.xpm",
 			&game->img_width, &game->img_height);
+	if (game->img_wall == NULL)
+		print_error("Invalid wall image", game);
 	game->img_exit = mlx_xpm_file_to_image(
 			game->mlx_connection, "images/exit.xpm",
 			&game->img_width, &game->img_height);
+	if (game->img_exit == NULL)
+		print_error("Invalid exit image", game);
 	game->img_background = mlx_xpm_file_to_image(
 			game->mlx_connection, "images/background.xpm",
 			&game->img_width, &game->img_height);
+	if (game->img_background == NULL)
+		print_error("Invalid background image", game);
 }
 
 int	render_game_loop(t_game *game)
@@ -78,9 +100,9 @@ void	render_game(t_game *game)
 				game->player_x = j;
 				game->player_y = i;
 			}
-			x += 64;
+			x += 32;
 		}
-		y += 64;
+		y += 32;
 	}
 }
 
@@ -88,7 +110,7 @@ void	start_game(t_game *game)
 {
 	game->mlx_connection = mlx_init();
 	game->mlx_window = mlx_new_window(game->mlx_connection,
-			game->column_count * 64, game->row_count * 64, "so_long");
+			game->column_count * 32, game->row_count * 32, "so_long");
 	load_characters_image(game);
 	mlx_loop_hook(game->mlx_connection, render_game_loop, game);
 	mlx_key_hook(game->mlx_window, key_hook, game);

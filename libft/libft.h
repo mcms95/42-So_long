@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nucardos <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nucardos <nucardos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 19:40:39 by nucardos          #+#    #+#             */
-/*   Updated: 2023/06/23 19:40:41 by nucardos         ###   ########.fr       */
+/*   Updated: 2024/06/19 11:26:33 by nucardos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t n);
 char	*ft_strrchr(const char *s, int c);
 char	**ft_split(char const *s, char c);
 int		ft_strcmp(const char *s1, const char *s2);
-
 
 //MEMORY FUNCTIONS
 void	ft_bzero(void *s, size_t n);

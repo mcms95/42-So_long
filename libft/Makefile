@@ -16,7 +16,7 @@ OBJ	=	$(SRC:.c=.o)
 all:	$(NAME)
 
 .c.o:
-		${CC} ${FLAGS} -c $< -o ${<:.c=.o}
+		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 $(NAME): $(OBJ)
 	@ar rcs $@ $^
